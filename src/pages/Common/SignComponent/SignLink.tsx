@@ -12,7 +12,7 @@ const SignLink: FC<Props> = ({ path, title }) => {
 
     return (
         <Link
-            style={{ marginTop: 60 }}
+            style={{ marginTop: 56 }}
             component="button"
             variant="body2"
             onClick={() => {

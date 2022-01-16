@@ -19,8 +19,22 @@ const SignUp: FC = () => {
         mode: 'onChange',
     });
 
-    const handleSignUp = async ({ email, password }: SignAuth) => {
-        console.log(await supabase.auth.signUp({ email, password }));
+    const handleSignUp = async ({
+        email,
+        password,
+        name,
+        belongs,
+    }: SignAuth) => {
+        const req = await supabase.auth.signUp({ email, password });
+        if (req.user !== null) {
+            await supabase.from('users').insert([
+                {
+                    user_id: req.user.id,
+                    name,
+                    belongs,
+                },
+            ]);
+        }
     };
 
     return (
