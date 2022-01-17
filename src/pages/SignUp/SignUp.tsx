@@ -9,8 +9,10 @@ import { SignAuth } from '../../type/types';
 import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp: FC = () => {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -47,7 +49,12 @@ const SignUp: FC = () => {
                 handleSubmit={handleSubmit(handleSignUp)}
                 title={'新規登録'}
             />
-            <SignLink path={'/'} title={'サインイン'} />
+            <SignLink
+                navigate={() => {
+                    navigate('/');
+                }}
+                title={'サインイン'}
+            />
         </SignContainer>
     );
 };

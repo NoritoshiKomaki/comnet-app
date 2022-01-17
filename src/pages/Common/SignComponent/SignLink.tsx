@@ -1,23 +1,18 @@
 import { Link } from '@mui/material';
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 type Props = {
-    path: '/' | '/signUp';
+    navigate: () => void;
     title: string;
 };
 
-const SignLink: FC<Props> = ({ path, title }) => {
-    const navigate = useNavigate();
-
+const SignLink: FC<Props> = ({ navigate, title }) => {
     return (
         <Link
             style={{ marginTop: 56 }}
             component="button"
             variant="body2"
-            onClick={() => {
-                navigate(path);
-            }}
+            onClick={navigate}
         >
             {title}
         </Link>
