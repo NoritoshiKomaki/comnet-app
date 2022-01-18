@@ -3,10 +3,11 @@ import { UseFormRegister } from 'react-hook-form';
 import { TextField } from '@mui/material';
 import { setRegister } from '../../../util/setRegister';
 import AlertMessage from './AlertMessage';
-import { SignAuth, SignErrors } from '../../../type/types';
+import { SignErrors } from '../../../type/types';
+import { SignRequest } from '../../../slice/types';
 
 type Props = {
-    register: UseFormRegister<SignAuth>;
+    register: UseFormRegister<SignRequest>;
     errors: SignErrors;
 };
 
@@ -21,7 +22,6 @@ const EmailForm: FC<Props> = ({ register, errors }) => {
                 id="standard-email-input"
                 label="メールアドレス"
                 type="text"
-                autoComplete="current-email"
                 fullWidth
                 variant="standard"
                 {...register('email', {
