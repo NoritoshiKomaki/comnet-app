@@ -23,6 +23,7 @@ const PasswordForm: FC<Props> = ({ register, errors }) => {
                 id="standard-password-input"
                 label="パスワード"
                 type="password"
+                autoComplete="current-password"
                 fullWidth
                 variant="standard"
                 {...register('password', {

@@ -22,6 +22,7 @@ const EmailForm: FC<Props> = ({ register, errors }) => {
                 id="standard-email-input"
                 label="メールアドレス"
                 type="text"
+                autoComplete="current-email"
                 fullWidth
                 variant="standard"
                 {...register('email', {
