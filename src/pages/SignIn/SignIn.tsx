@@ -1,28 +1,27 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { SignAuth } from '../../type/types';
 import EmailForm from '../Common/SignComponent/EmailForm';
 import PasswordForm from '../Common/SignComponent/PasswordForm';
 import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchSignIn } from '../../slice/authSlice';
+import { useSign } from '../../slice/useSign';
+import { SignRequest } from '../../slice/types';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const { signIn } = useSign();
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignAuth>({
+    } = useForm<SignRequest>({
         mode: 'onChange',
     });
 
-    const handleSignIn = async ({ email, password }: SignAuth) => {
-        await dispatch(fetchSignIn({ email, password }));
+    const handleSignIn = async ({ email, password }: SignRequest) => {
+        await signIn({ email, password });
         navigate('home');
     };
 
@@ -32,7 +31,7 @@ const SignIn: FC = () => {
             <PasswordForm register={register} errors={errors} />
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
-                title={'サインイン'}
+                title={'ログイン'}
             />
             <SignLink navigate={() => navigate('/signUp')} title={'新規登録'} />
         </SignContainer>

@@ -5,7 +5,7 @@ import { supabase } from '../../supabase/supabase';
 
 const Home: FC = () => {
     const [user, setUser] = useState<any>(null);
-    const session = useSelector((state: RootState) => state.auth.session);
+    const session = useSelector((state: RootState) => state.sign.session);
 
     useEffect(() => {
         const setupUser = async () => {
@@ -16,7 +16,6 @@ const Home: FC = () => {
                     .eq('user_id', session.user.id)
                     .single();
                 setUser(user);
-                console.log(user);
             }
         };
         setupUser();

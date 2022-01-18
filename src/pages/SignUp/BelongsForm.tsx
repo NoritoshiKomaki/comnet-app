@@ -3,10 +3,11 @@ import { UseFormRegister } from 'react-hook-form';
 import { TextField } from '@mui/material';
 import AlertMessage from '../Common/SignComponent/AlertMessage';
 import { setRegister } from '../../util/setRegister';
-import { SignAuth, SignErrors } from '../../type/types';
+import { SignErrors } from '../../type/types';
+import { SignRequest } from '../../slice/types';
 
 type Props = {
-    register: UseFormRegister<SignAuth>;
+    register: UseFormRegister<SignRequest>;
     errors: SignErrors;
 };
 

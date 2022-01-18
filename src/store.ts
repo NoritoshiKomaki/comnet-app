@@ -3,14 +3,14 @@ import {
     useSelector as rawUseSelector,
     TypedUseSelectorHook,
 } from 'react-redux';
-import { authSlice } from './slice/authSlice';
+import { signSlice } from './slice/signSlice';
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export const store = configureStore({
     reducer: {
-        auth: authSlice.reducer,
+        sign: signSlice.reducer,
     },
 });
 
