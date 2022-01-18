@@ -1,23 +1,24 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { supabase } from '../../supabase/supabase';
 import EmailForm from '../Common/SignComponent/EmailForm';
 import PasswordForm from '../Common/SignComponent/PasswordForm';
 import NameForm from './NameForm';
 import BelongsForm from './BelongsForm';
-import { SignAuth } from '../../type/types';
 import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
+import { useSign } from '../../slice/useSign';
+import { SignRequest } from '../../slice/types';
 
 const SignUp: FC = () => {
     const navigate = useNavigate();
+    const { signUp } = useSign();
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignAuth>({
+    } = useForm<SignRequest>({
         mode: 'onChange',
     });
 
@@ -26,17 +27,9 @@ const SignUp: FC = () => {
         password,
         name,
         belongs,
-    }: SignAuth) => {
-        const req = await supabase.auth.signUp({ email, password });
-        if (req.user !== null) {
-            await supabase.from('users').insert([
-                {
-                    user_id: req.user.id,
-                    name,
-                    belongs,
-                },
-            ]);
-        }
+    }: SignRequest) => {
+        await signUp({ email, password, name, belongs });
+        navigate('/');
     };
 
     return (
