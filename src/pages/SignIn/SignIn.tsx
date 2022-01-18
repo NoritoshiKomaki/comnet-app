@@ -32,7 +32,7 @@ const SignIn: FC = () => {
             <PasswordForm register={register} errors={errors} />
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
-                title={'サインイン'}
+                title={'サインインテスト'}
             />
             <SignLink navigate={() => navigate('/signUp')} title={'新規登録'} />
         </SignContainer>
