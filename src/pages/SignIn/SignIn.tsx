@@ -6,8 +6,8 @@ import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
-import { useSign } from '../../slice/useSign';
-import { SignInRequest } from '../../slice/types';
+import { useSign } from '../../slice/sign/useSign';
+import { SignInRequest } from '../../slice/sign/types';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();

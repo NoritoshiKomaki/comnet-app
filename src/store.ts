@@ -14,7 +14,7 @@ import {
     useSelector as rawUseSelector,
     TypedUseSelectorHook,
 } from 'react-redux';
-import signSlice from './slice/signSlice';
+import signSlice from './slice/sign/signSlice';
 
 const persistConfig = {
     key: 'sign',

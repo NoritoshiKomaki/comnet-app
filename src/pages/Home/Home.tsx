@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { useSign } from '../../slice/useSign';
+import { useSign } from '../../slice/sign/useSign';
 import { supabase } from '../../supabase/supabase';
 
 const Home: FC = () => {

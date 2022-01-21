@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { supabase } from '../supabase/supabase';
+import { supabase } from '../../supabase/supabase';
 import { SignInRequest, SignResponse, SignState, SignUpRequest } from './types';
 
 const initialState: SignState = {

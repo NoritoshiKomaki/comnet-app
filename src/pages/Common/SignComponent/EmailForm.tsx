@@ -4,7 +4,7 @@ import { TextField } from '@mui/material';
 import { setRegister } from '../../../util/setRegister';
 import AlertMessage from './AlertMessage';
 import { SignErrors } from '../../../type/types';
-import { SignInRequest } from '../../../slice/types';
+import { SignInRequest } from '../../../slice/sign/types';
 
 type Props = {
     register: UseFormRegister<SignInRequest>;

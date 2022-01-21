@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 import { fetchSignIn, fetchSignUp } from './signSlice';
 import { SignAction, SignInRequest, SignState, SignUpRequest } from './types';
 
