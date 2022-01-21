@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { supabase } from '../supabase/supabase';
-import { SignRequest, SignResponse, SignState } from './types';
+import { SignInRequest, SignResponse, SignState, SignUpRequest } from './types';
 
 const initialState: SignState = {
     session: null,
@@ -9,7 +9,7 @@ const initialState: SignState = {
     apiError: undefined,
 };
 
-export const fetchSignUp = createAsyncThunk<SignResponse, SignRequest>(
+export const fetchSignUp = createAsyncThunk<SignResponse, SignUpRequest>(
     'fetchSignUp',
     async ({ email, password, name, belongs }) => {
         const res = await supabase.auth.signUp({ email, password });
@@ -26,7 +26,7 @@ export const fetchSignUp = createAsyncThunk<SignResponse, SignRequest>(
     }
 );
 
-export const fetchSignIn = createAsyncThunk<SignResponse, SignRequest>(
+export const fetchSignIn = createAsyncThunk<SignResponse, SignInRequest>(
     'fetchSignIn',
     async (req) => {
         const res = await supabase.auth.signIn(req);
@@ -57,3 +57,5 @@ export const signSlice = createSlice({
         });
     },
 });
+
+export default signSlice.reducer;

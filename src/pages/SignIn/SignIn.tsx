@@ -7,7 +7,7 @@ import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
 import { useSign } from '../../slice/useSign';
-import { SignRequest } from '../../slice/types';
+import { SignInRequest } from '../../slice/types';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();
@@ -16,11 +16,11 @@ const SignIn: FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignRequest>({
+    } = useForm<SignInRequest>({
         mode: 'onChange',
     });
 
-    const handleSignIn = async ({ email, password }: SignRequest) => {
+    const handleSignIn = async ({ email, password }: SignInRequest) => {
         await signIn({ email, password });
         navigate('home');
     };

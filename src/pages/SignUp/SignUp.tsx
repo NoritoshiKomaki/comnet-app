@@ -9,7 +9,7 @@ import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
 import { useSign } from '../../slice/useSign';
-import { SignRequest } from '../../slice/types';
+import { SignUpRequest } from '../../slice/types';
 
 const SignUp: FC = () => {
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ const SignUp: FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignRequest>({
+    } = useForm<SignUpRequest>({
         mode: 'onChange',
     });
 
@@ -27,7 +27,7 @@ const SignUp: FC = () => {
         password,
         name,
         belongs,
-    }: SignRequest) => {
+    }: SignUpRequest) => {
         await signUp({ email, password, name, belongs });
         navigate('/');
     };

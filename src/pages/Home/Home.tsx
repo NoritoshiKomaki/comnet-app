@@ -1,14 +1,13 @@
 import { FC, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useSign } from '../../slice/useSign';
 import { supabase } from '../../supabase/supabase';
 
 const Home: FC = () => {
     const [user, setUser] = useState<any>(null);
-    const session = useSelector((state: RootState) => state.sign.session);
+    const { session } = useSign();
 
     useEffect(() => {
-        const setupUser = async () => {
+        const getUser = async () => {
             if (session?.user) {
                 const { data: user } = await supabase
                     .from('users')
@@ -18,7 +17,7 @@ const Home: FC = () => {
                 setUser(user);
             }
         };
-        setupUser();
+        getUser();
     }, [session]);
     return !user ? null : <div>{user.name}</div>;
 };

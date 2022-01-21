@@ -4,10 +4,10 @@ import { TextField } from '@mui/material';
 import { setRegister } from '../../../util/setRegister';
 import AlertMessage from './AlertMessage';
 import { SignErrors } from '../../../type/types';
-import { SignRequest } from '../../../slice/types';
+import { SignInRequest } from '../../../slice/types';
 
 type Props = {
-    register: UseFormRegister<SignRequest>;
+    register: UseFormRegister<SignInRequest>;
     errors: SignErrors;
 };
 
