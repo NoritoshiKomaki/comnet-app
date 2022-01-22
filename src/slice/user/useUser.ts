@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { RootState, useAppDispatch, useAppSelector } from '../../store';
 import { fetchGetUser, fetchSetUser } from './userSlice';
 import { GetUserRequest, SetUserRequest, UserAction, UserState } from './types';
 
 export const useUser = (): UserState & UserAction => {
-    const dispatch = useDispatch();
-    const { user_id, name, belongs, apiError } = useSelector(
+    const dispatch = useAppDispatch();
+    const { user_id, name, belongs, apiError } = useAppSelector(
         (state: RootState) => state.user
     );
     const setUser = async (req: SetUserRequest) => {

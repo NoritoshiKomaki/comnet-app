@@ -9,8 +9,8 @@ export interface SignState {
 }
 
 export type SignAction = {
-    signUp: (req: SignUpRequest) => Promise<void>;
-    signIn: (req: SignRequest) => Promise<void>;
+    signUp: (req: SignUpRequest) => Promise<false | SignResponse>;
+    signIn: (req: SignRequest) => Promise<false | SignResponse>;
 };
 
 export type SignRequest = {
