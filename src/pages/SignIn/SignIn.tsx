@@ -1,13 +1,12 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import EmailForm from '../Common/SignComponent/EmailForm';
-import PasswordForm from '../Common/SignComponent/PasswordForm';
 import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
 import { useSign } from '../../slice/sign/useSign';
-import { SignInRequest } from '../../slice/sign/types';
+import { SignInProps } from '../../type/types';
+import SignInForm from './SignInForm';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();
@@ -16,19 +15,18 @@ const SignIn: FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignInRequest>({
+    } = useForm<SignInProps>({
         mode: 'onChange',
     });
 
-    const handleSignIn = async ({ email, password }: SignInRequest) => {
-        await signIn({ email, password });
+    const handleSignIn = async (req: SignInProps) => {
+        await signIn(req);
         navigate('home');
     };
 
     return (
         <SignContainer>
-            <EmailForm register={register} errors={errors} />
-            <PasswordForm register={register} errors={errors} />
+            <SignInForm register={register} errors={errors} />
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
                 title={'ログイン'}

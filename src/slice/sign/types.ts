@@ -10,19 +10,19 @@ export interface SignState {
 
 export type SignAction = {
     signUp: (req: SignUpRequest) => Promise<void>;
-    signIn: (req: SignInRequest) => Promise<void>;
+    signIn: (req: SignRequest) => Promise<void>;
+};
+
+export type SignRequest = {
+    email: string;
+    password: string;
 };
 
 export type SignUpRequest = {
     email: string;
     password: string;
-    name?: string;
-    belongs?: string;
-};
-
-export type SignInRequest = {
-    email: string;
-    password: string;
+    name: string;
+    belongs: string;
 };
 
 export type SignResponse = {

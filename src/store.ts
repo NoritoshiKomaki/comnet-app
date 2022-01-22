@@ -15,13 +15,14 @@ import {
     TypedUseSelectorHook,
 } from 'react-redux';
 import signSlice from './slice/sign/signSlice';
+import userSlice from './slice/user/userSlice';
 
 const persistConfig = {
     key: 'sign',
     storage,
 };
 
-const reducers = combineReducers({ sign: signSlice });
+const reducers = combineReducers({ sign: signSlice, user: userSlice });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
