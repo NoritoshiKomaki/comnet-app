@@ -36,7 +36,7 @@ const SignIn: FC = () => {
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
                 title={'ログイン'}
-                isError={false}
+                isError={isError}
             />
             <SignLink navigate={() => navigate('/signUp')} title={'新規登録'} />
         </SignContainer>
