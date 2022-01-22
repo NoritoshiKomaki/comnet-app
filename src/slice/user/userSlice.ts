@@ -23,7 +23,6 @@ export const fetchSetUser = createAsyncThunk<
     PostgrestResponse<SetUserResponce>,
     SetUserRequest
 >('fetchSetUser', async ({ user_id, name, belongs }) => {
-    console.log(user_id, name, belongs);
     const res = await supabase.from('users').insert([
         {
             user_id,
@@ -31,7 +30,6 @@ export const fetchSetUser = createAsyncThunk<
             belongs,
         },
     ]);
-    console.log(res);
     return res;
 });
 
