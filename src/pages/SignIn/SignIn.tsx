@@ -1,13 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import EmailForm from '../Common/SignComponent/EmailForm';
-import PasswordForm from '../Common/SignComponent/PasswordForm';
 import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
-import { useSign } from '../../slice/useSign';
-import { SignRequest } from '../../slice/types';
+import { useSign } from '../../slice/sign/useSign';
+import { SignInProps } from '../../type/types';
+import SignAuthForm from '../Common/SignComponent/SignAuthForm';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();
@@ -16,22 +15,28 @@ const SignIn: FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignRequest>({
+    } = useForm<SignInProps>({
         mode: 'onChange',
     });
 
-    const handleSignIn = async ({ email, password }: SignRequest) => {
-        await signIn({ email, password });
+    const [isError, setIsError] = useState<boolean>(false);
+
+    const handleSignIn = async (req: SignInProps) => {
+        await signIn(req);
         navigate('home');
     };
 
     return (
         <SignContainer>
-            <EmailForm register={register} errors={errors} />
-            <PasswordForm register={register} errors={errors} />
+            <SignAuthForm
+                register={register}
+                errors={errors}
+                setIsError={setIsError}
+            />
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
                 title={'ログイン'}
+                isError={false}
             />
             <SignLink navigate={() => navigate('/signUp')} title={'新規登録'} />
         </SignContainer>
