@@ -21,8 +21,8 @@ export type SignRequest = {
 export type SignUpRequest = {
     email: string;
     password: string;
-    name: string;
-    belongs: string;
+    name?: string;
+    belongs?: string;
 };
 
 export type SignResponse = {

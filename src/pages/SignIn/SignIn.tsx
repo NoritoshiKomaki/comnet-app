@@ -6,7 +6,7 @@ import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
 import { useSign } from '../../slice/sign/useSign';
 import { SignInProps } from '../../type/types';
-import SignInForm from './SignInForm';
+import SignAuthForm from '../Common/SignComponent/SignAuthForm';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();
@@ -26,7 +26,7 @@ const SignIn: FC = () => {
 
     return (
         <SignContainer>
-            <SignInForm register={register} errors={errors} />
+            <SignAuthForm register={register} errors={errors} />
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
                 title={'ログイン'}

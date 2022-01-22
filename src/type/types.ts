@@ -3,8 +3,8 @@ import { FieldError } from 'react-hook-form';
 export type SignUpProps = {
     email: string;
     password: string;
-    name: string;
-    belongs: string;
+    name?: string;
+    belongs?: string;
 };
 
 export type SignInProps = {

@@ -5,8 +5,9 @@ import SignButton from '../Common/SignComponent/SignButton';
 import SignLink from '../Common/SignComponent/SignLink';
 import { useNavigate } from 'react-router-dom';
 import { useSign } from '../../slice/sign/useSign';
-import SignUpForm from './SignUpForm';
+import UserProperty from './UserPropertyForm';
 import { SignUpProps } from '../../type/types';
+import SignAuthForm from '../Common/SignComponent/SignAuthForm';
 
 const SignUp: FC = () => {
     const navigate = useNavigate();
@@ -25,7 +26,8 @@ const SignUp: FC = () => {
 
     return (
         <SignContainer>
-            <SignUpForm register={register} errors={errors} />
+            <SignAuthForm register={register} errors={errors} />
+            <UserProperty register={register} errors={errors} />
             <SignButton
                 handleSubmit={handleSubmit(handleSignUp)}
                 title={'新規登録'}

@@ -16,6 +16,8 @@ export const fetchSignUp = createAsyncThunk<SignResponse, SignUpRequest>(
         const res = await supabase.auth.signUp({ email, password });
         if (!res.user) return res;
         const user_id = res.user.id;
+        if (!name) return res;
+        if (!belongs) return res;
         dispatch(
             fetchSetUser({
                 user_id,
