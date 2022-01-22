@@ -8,8 +8,15 @@ export const useUser = (): UserState & UserAction => {
         (state: RootState) => state.user
     );
     const setUser = async (req: SetUserRequest) => {
-        await dispatch(fetchSetUser(req));
+        const resultAction = await dispatch(fetchSetUser(req));
+        if (fetchSetUser.rejected.match(resultAction)) {
+            return false;
+        }
+        const { error } = resultAction.payload;
+        if (error !== null) return false;
+        return true;
     };
+
     const getUser = async (req: GetUserRequest) => {
         await dispatch(fetchGetUser(req));
     };

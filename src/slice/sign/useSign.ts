@@ -12,15 +12,23 @@ export const useSign = (): SignState & SignAction => {
         if (fetchSignUp.rejected.match(resultAction)) {
             return false;
         }
-        return resultAction.payload;
+        const { user, session, error } = resultAction.payload;
+        if (!user || !session || error !== null) return false;
+        return { session, user };
     };
+
     const signIn = async (req: SignRequest) => {
         await dispatch(fetchSignIn(req));
         const resultAction = await dispatch(fetchSignIn(req));
         if (fetchSignIn.rejected.match(resultAction)) {
             return false;
         }
-        return resultAction.payload;
+        const { user, session, error } = resultAction.payload;
+        if (!user || !session || error !== null) {
+            return false;
+        }
+
+        return { session, user };
     };
 
     return { session, user, error, apiError, signUp, signIn };

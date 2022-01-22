@@ -1,21 +1,26 @@
 import { Button } from '@mui/material';
 import { FC } from 'react';
+import ButtonAlertMessage from './ButtonAlertMessage';
 
 type Props = {
     handleSubmit: () => void;
     title: string;
+    isError: boolean;
 };
 
-const SignButton: FC<Props> = ({ handleSubmit, title }) => {
+const SignButton: FC<Props> = ({ handleSubmit, title, isError }) => {
     return (
-        <Button
-            style={{ textTransform: 'none', marginTop: 16 }}
-            onClick={handleSubmit}
-            variant="contained"
-            fullWidth
-        >
-            {title}
-        </Button>
+        <div style={{ width: '100%' }}>
+            <Button
+                style={{ textTransform: 'none', marginTop: 16 }}
+                onClick={handleSubmit}
+                variant="contained"
+                fullWidth
+            >
+                {title}
+            </Button>
+            <ButtonAlertMessage isError={isError} />
+        </div>
     );
 };
 

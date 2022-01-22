@@ -8,9 +8,10 @@ import { SignErrors, SignInProps } from '../../../type/types';
 type Props = {
     register: UseFormRegister<SignInProps>;
     errors: SignErrors;
+    setIsError: (inVal: boolean) => void;
 };
 
-const SignAuthForm: FC<Props> = ({ register, errors }) => {
+const SignAuthForm: FC<Props> = ({ register, errors, setIsError }) => {
     return (
         <>
             <div
@@ -25,6 +26,7 @@ const SignAuthForm: FC<Props> = ({ register, errors }) => {
                     autoComplete="current-email"
                     fullWidth
                     variant="standard"
+                    onFocus={() => setIsError(false)}
                     {...register('email', {
                         required: setRegister.required(),
                         maxLength: setRegister.maxLength(50),
@@ -50,6 +52,7 @@ const SignAuthForm: FC<Props> = ({ register, errors }) => {
                     autoComplete="current-password"
                     fullWidth
                     variant="standard"
+                    onFocus={() => setIsError(false)}
                     {...register('password', {
                         required: setRegister.required(),
                         maxLength: setRegister.maxLength(20),

@@ -8,9 +8,10 @@ import { SignErrors, SignUpProps } from '../../type/types';
 type Props = {
     register: UseFormRegister<SignUpProps>;
     errors: SignErrors;
+    setIsError: (inVal: boolean) => void;
 };
 
-const UserPropertyForm: FC<Props> = ({ register, errors }) => {
+const UserPropertyForm: FC<Props> = ({ register, errors, setIsError }) => {
     return (
         <>
             <div
@@ -25,6 +26,7 @@ const UserPropertyForm: FC<Props> = ({ register, errors }) => {
                     type="text"
                     fullWidth
                     variant="standard"
+                    onFocus={() => setIsError(false)}
                     {...register('name', {
                         required: setRegister.required(),
                         maxLength: setRegister.maxLength(10),
@@ -44,6 +46,7 @@ const UserPropertyForm: FC<Props> = ({ register, errors }) => {
                     type="text"
                     fullWidth
                     variant="standard"
+                    onFocus={() => setIsError(false)}
                     {...register('belongs', {
                         required: setRegister.required(),
                         maxLength: setRegister.maxLength(10),

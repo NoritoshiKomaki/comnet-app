@@ -9,7 +9,7 @@ export interface UserState {
 }
 
 export type UserAction = {
-    setUser: (req: SetUserRequest) => Promise<void>;
+    setUser: (req: SetUserRequest) => Promise<boolean>;
     getUser: (req: GetUserRequest) => Promise<void>;
 };
 

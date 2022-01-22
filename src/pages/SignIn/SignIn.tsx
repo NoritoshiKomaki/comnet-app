@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import SignContainer from '../Common/SignComponent/SignContainer';
 import SignButton from '../Common/SignComponent/SignButton';
@@ -19,6 +19,8 @@ const SignIn: FC = () => {
         mode: 'onChange',
     });
 
+    const [isError, setIsError] = useState<boolean>(false);
+
     const handleSignIn = async (req: SignInProps) => {
         await signIn(req);
         navigate('home');
@@ -26,10 +28,15 @@ const SignIn: FC = () => {
 
     return (
         <SignContainer>
-            <SignAuthForm register={register} errors={errors} />
+            <SignAuthForm
+                register={register}
+                errors={errors}
+                setIsError={setIsError}
+            />
             <SignButton
                 handleSubmit={handleSubmit(handleSignIn)}
                 title={'ログイン'}
+                isError={false}
             />
             <SignLink navigate={() => navigate('/signUp')} title={'新規登録'} />
         </SignContainer>

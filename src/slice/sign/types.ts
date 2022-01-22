@@ -9,8 +9,8 @@ export interface SignState {
 }
 
 export type SignAction = {
-    signUp: (req: SignUpRequest) => Promise<false | SignResponse>;
-    signIn: (req: SignRequest) => Promise<false | SignResponse>;
+    signUp: (req: SignUpRequest) => Promise<false | SignApiResponce>;
+    signIn: (req: SignRequest) => Promise<false | SignApiResponce>;
 };
 
 export type SignRequest = {
@@ -29,4 +29,9 @@ export type SignResponse = {
     session: Session | null;
     user: User | null;
     error: ApiError | null;
+};
+
+export type SignApiResponce = {
+    session: Session;
+    user: User;
 };
