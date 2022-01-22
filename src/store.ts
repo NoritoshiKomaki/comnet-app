@@ -18,8 +18,9 @@ import signSlice from './slice/sign/signSlice';
 import userSlice from './slice/user/userSlice';
 
 const persistConfig = {
-    key: 'sign',
+    key: 'root',
     storage,
+    whitelist: ['sign', 'user'],
 };
 
 const reducers = combineReducers({ sign: signSlice, user: userSlice });
