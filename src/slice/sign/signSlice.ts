@@ -11,9 +11,8 @@ const initialState: SignState = {
 
 export const fetchSignUp = createAsyncThunk<SignResponse, SignUpRequest>(
     'fetchSignUp',
-    async ({ email, password, name, belongs }) => {
-        const res = await supabase.auth.signUp({ email, password });
-
+    async (req) => {
+        const res = await supabase.auth.signUp(req);
         return res;
     }
 );

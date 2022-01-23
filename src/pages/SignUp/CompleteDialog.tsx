@@ -1,5 +1,5 @@
-import { Button, Dialog } from '@mui/material';
-import { FC } from 'react';
+import { Button, Dialog, Slide, SlideProps } from '@mui/material';
+import { FC, forwardRef } from 'react';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 type Props = {
@@ -7,11 +7,20 @@ type Props = {
     handleDialogClose: () => void;
 };
 const CompleteDialog: FC<Props> = ({ isComplete, handleDialogClose }) => {
+    const Transition = forwardRef(function Transition(props: SlideProps, ref) {
+        return <Slide direction="up" ref={ref} {...props} />;
+    });
+
     return (
-        <Dialog onClose={handleDialogClose} open={isComplete}>
+        <Dialog
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleDialogClose}
+            open={isComplete}
+        >
             <div
                 style={{
-                    margin: 48,
+                    margin: 64,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -22,8 +31,8 @@ const CompleteDialog: FC<Props> = ({ isComplete, handleDialogClose }) => {
                     sx={{
                         color: '#55C500',
                         fontSize: 48,
-                        marginTop: 1,
-                        marginBottom: 1,
+                        marginTop: 2,
+                        marginBottom: 2,
                     }}
                 />
                 <Button onClick={handleDialogClose} variant="contained">
