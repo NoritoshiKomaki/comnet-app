@@ -18,7 +18,13 @@ export const useUser = (): UserState & UserAction => {
     };
 
     const getUser = async (req: GetUserRequest) => {
-        await dispatch(fetchGetUser(req));
+        const resultAction = await dispatch(fetchGetUser(req));
+        if (fetchGetUser.rejected.match(resultAction)) {
+            return false;
+        }
+        const { error } = resultAction.payload;
+        if (error !== null) return false;
+        return true;
     };
 
     return { user_id, name, belongs, apiError, setUser, getUser };

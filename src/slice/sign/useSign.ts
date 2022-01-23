@@ -18,7 +18,6 @@ export const useSign = (): SignState & SignAction => {
     };
 
     const signIn = async (req: SignRequest) => {
-        await dispatch(fetchSignIn(req));
         const resultAction = await dispatch(fetchSignIn(req));
         if (fetchSignIn.rejected.match(resultAction)) {
             return false;

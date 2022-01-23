@@ -1,21 +1,26 @@
-import { FC, useEffect } from 'react';
-import { useSign } from '../../slice/sign/useSign';
-import { useUser } from '../../slice/user/useUser';
+import { FC, useState } from 'react';
+import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import DrawerView from '../Common/DrawerView';
+import Header from '../Common/Header';
 
 const Home: FC = () => {
-    const { session } = useSign();
-    const { getUser, name, belongs } = useUser();
+    const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
 
-    useEffect(() => {
-        (async () => {
-            if (!session?.user) return;
-            await getUser({ user_id: session.user.id });
-        })();
-    }, [getUser, session]);
     return (
-        <div>
-            {name}
-            {belongs}
+        <div style={{ height: '100vh', position: 'relative' }}>
+            <Header setIsOpenDrawer={setIsOpenDrawer} />
+            <DrawerView
+                isOpenDrawer={isOpenDrawer}
+                setIsOpenDrawer={setIsOpenDrawer}
+            />
+            <Fab
+                style={{ position: 'absolute', bottom: 24, right: 24 }}
+                color="primary"
+                aria-label="add"
+            >
+                <AddIcon />
+            </Fab>
         </div>
     );
 };

@@ -7,10 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSign } from '../../slice/sign/useSign';
 import { SignInProps } from '../../type/types';
 import SignAuthForm from '../Common/SignComponent/SignAuthForm';
+import LoadingView from '../Common/Backdrop';
+import { useUser } from '../../slice/user/useUser';
 
 const SignIn: FC = () => {
     const navigate = useNavigate();
     const { signIn } = useSign();
+    const { getUser } = useUser();
     const {
         register,
         handleSubmit,
@@ -20,9 +23,25 @@ const SignIn: FC = () => {
     });
 
     const [isError, setIsError] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleSignIn = async (req: SignInProps) => {
-        await signIn(req);
+        setIsLoading(true);
+        const resultSignIn = await signIn(req);
+        if (!resultSignIn) {
+            setIsLoading(false);
+            setIsError(true);
+            return;
+        }
+        const user_id = resultSignIn.user.id;
+        const resultGetUser = await getUser({ user_id });
+        if (!resultGetUser) {
+            setIsLoading(false);
+            setIsError(true);
+            return;
+        }
+        setIsLoading(false);
+        setIsError(false);
         navigate('home');
     };
 
@@ -39,6 +58,7 @@ const SignIn: FC = () => {
                 isError={isError}
             />
             <SignLink navigate={() => navigate('/signUp')} title={'新規登録'} />
+            <LoadingView isLoading={isLoading} />
         </SignContainer>
     );
 };
